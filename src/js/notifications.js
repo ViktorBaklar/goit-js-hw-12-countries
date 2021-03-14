@@ -4,23 +4,23 @@ import '@pnotify/core/dist/PNotify.css';
 
 function onNotFoundError() {
   error({
-    text: 'There is no such country. Please try another search!',
-    delay: 4000,
+    text: 'Country not found. Please try again!',
+    delay: 1500,
   });
 }
 
 function onTooManyError() {
   error({
-    text: 'Too many items found. Please enter a more specific query!',
+    text: 'Too many matches. Please enter more letters!',
     type: 'error',
-    delay: 4000,
+    delay: 1500,
   });
 }
 
 function onSuccess(searchResult) {
   success({
-    text: `Your search found ${searchResult.length} countries. Click on any item in the list to see the country card`,
-    delay: 4000,
+    text: `Was found ${searchResult.length} countries. Select from the list`,
+    delay: 1500,
   });
 }
 

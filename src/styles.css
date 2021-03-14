@@ -4,3 +4,10 @@ body {
   background-image: url('./images/bg-pattern.png');
   font-size: 20px;
 }
+.countriesList {
+  cursor: pointer;
+}
+
+.countryList__item:hover {
+  background-color: #bbb7bb;
+}
