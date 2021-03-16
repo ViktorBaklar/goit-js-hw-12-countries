@@ -17,7 +17,7 @@ function fetchCountriesList(query) {
       notice.onNotFoundError();
     })
     .finally(() => {
-      refs.spinner.classList.add('is-hidden');
+      refs.countryChoose.classList.add('is-hidden');
     });
 }
 

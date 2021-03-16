@@ -1,5 +1,5 @@
 import './styles.css';
-import countriesListTpl from './templates/countriesList.hbs';
+import selectListTpl from './templates/selectList.hbs';
 import countryCardTpl from './templates/countryCard.hbs';
 import API from './js/fetchCountries';
 import { debounce } from 'lodash';
@@ -8,23 +8,17 @@ import getRefs from './js/get-refs';
 
 const refs = getRefs();
 
-let furtherSearchQuery = '';
+let SearchSelectList = '';
 
 refs.input.addEventListener('input', debounce(onSearch, 500));
 
 function onSearch(event) {
   event.preventDefault();
-  refs.spinner.classList.remove('is-hidden');
+  refs.countryChoose.classList.remove('is-hidden');
   refs.output.innerHTML = '';
-  const searchQuery = event.target.value.trim();
+  const searchSelect = event.target.value.trim();
 
-  if (searchQuery === '') {
-    refs.spinner.classList.add('is-hidden');
-    return;
-  }
-
-  API.fetchCountriesList(searchQuery).then(data => {
-    // console.log(data);
+  API.fetchCountriesList(searchSelect).then(data => {
     if (!data) return;
     if (data.length > 10) {
       notice.onTooManyError();
@@ -49,13 +43,13 @@ function onSearch(event) {
 }
 
 function onListClick(event) {
-  furtherSearchQuery = event.target.textContent;
-  API.fetchCountriesList(furtherSearchQuery).then(renderCountryCard);
+  SearchSelectList = event.target.textContent;
+  API.fetchCountriesList(SearchSelectList).then(renderCountryCard);
   refs.output.removeEventListener('click', onListClick);
 }
 
 function renderCountriesList(listData) {
-  refs.output.innerHTML = countriesListTpl(listData);
+  refs.output.innerHTML = selectListTpl(listData);
 }
 
 function renderCountryCard(countryData) {
