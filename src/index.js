@@ -17,6 +17,9 @@ function onSearch(event) {
   refs.countryChoose.classList.remove('is-hidden');
   refs.output.innerHTML = '';
   const searchSelect = event.target.value.trim();
+  if (!searchSelect) {
+    return;
+  }
 
   API.fetchCountriesList(searchSelect).then(data => {
     if (!data) return;
